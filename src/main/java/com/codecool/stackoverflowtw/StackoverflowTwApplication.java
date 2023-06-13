@@ -31,7 +31,7 @@ public class StackoverflowTwApplication {
         Database database = new Database(
                 "jdbc:postgresql://localhost:5432/stackoverflow",
                 "postgres",
-                "2911");
+                "");
         Map<String, String> tables = Map.of(
                 "question", TableStatements.QUESTION,
                 "answer", TableStatements.ANSWER,

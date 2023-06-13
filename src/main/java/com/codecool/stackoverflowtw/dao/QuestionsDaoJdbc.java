@@ -19,6 +19,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
         this.database = database;
     }
 
+    @Override
     public List<QuestionDTO> findAll() {
         String template = "SELECT * FROM question";
         try (Connection connection = database.getConnection();
@@ -35,16 +36,29 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
         }
     }
 
+    @Override
+    public QuestionDTO findOneById(int id) {
+        String template = "SELECT * FROM question WHERE question_id = id";
+        try (Connection connection = database.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(template)) {
+            return toEntity(resultSet);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private QuestionDTO toEntity(ResultSet resultSet) throws SQLException {
         return new QuestionDTO(
                 resultSet.getInt("question_id"),
                 resultSet.getString("question_title"),
                 resultSet.getString("question_detail"),
                 resultSet.getInt("user_id"),
-                resultSet.getTimestamp("created")
+                resultSet.getTimestamp("date")
         );
     }
 
+    @Override
     public void save(QuestionDTO questionDTO) {
         String template = "INSERT INTO question (question_title, question_detail, user_id) VALUES (?, ?, ?)";
         try (Connection connection = database.getConnection();
@@ -54,6 +68,11 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void findOneAndDelete(int id) {
+
     }
 
     private void prepare(QuestionDTO questionsDTO, PreparedStatement statement) throws SQLException {

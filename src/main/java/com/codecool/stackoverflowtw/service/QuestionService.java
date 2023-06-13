@@ -22,7 +22,7 @@ public class QuestionService {
 
     public List<QuestionDTO> getAllQuestions() {
         questionsDAO.sayHi();
-        return null;
+        return questionsDAO.findAll();
     }
 
     public QuestionDTO getQuestionById(int id) {
