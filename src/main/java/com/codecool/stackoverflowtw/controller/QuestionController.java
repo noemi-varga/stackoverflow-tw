@@ -45,6 +45,7 @@ public class QuestionController {
 
     @PostMapping("/")
     public boolean addNewQuestion(@RequestBody NewQuestionDTO question) {
+        //TODO return posted record!
         return questionService.addNewQuestion(question);
     }
 

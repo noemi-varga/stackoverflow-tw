@@ -1,5 +1,6 @@
 package com.codecool.stackoverflowtw.dao;
 
+import com.codecool.stackoverflowtw.controller.dto.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.QuestionDTO;
 import com.codecool.stackoverflowtw.dao.database.Database;
 
@@ -106,7 +107,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     @Override
-    public boolean save(QuestionDTO questionDTO) {
+    public boolean save(NewQuestionDTO questionDTO) {
         String template = "INSERT INTO question (question_title, question_detail, user_id) VALUES (?, ?, ?)";
         try (Connection connection = database.getConnection();
              PreparedStatement statement = connection.prepareStatement(template)) {
@@ -140,7 +141,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
         );
     }
 
-    private void prepare(QuestionDTO questionsDTO, PreparedStatement statement) throws SQLException {
+    private void prepare(NewQuestionDTO questionsDTO, PreparedStatement statement) throws SQLException {
         statement.setString(1, questionsDTO.question_title());
         statement.setString(2, questionsDTO.question_detail());
         statement.setInt(3, questionsDTO.user_id());
