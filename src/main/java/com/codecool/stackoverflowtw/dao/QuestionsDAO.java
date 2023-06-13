@@ -10,4 +10,8 @@ public interface QuestionsDAO {
     QuestionDTO findOneById(int id);
     boolean save(QuestionDTO questionDTO);
     boolean findOneAndDelete(int id);
+    List<QuestionDTO> sortByTitle();
+    List<QuestionDTO> sortByAnswerCount();
+    List<QuestionDTO> sortByDate();
+
 }
