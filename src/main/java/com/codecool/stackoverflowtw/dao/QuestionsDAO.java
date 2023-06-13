@@ -8,6 +8,6 @@ public interface QuestionsDAO {
     void sayHi();
     List<QuestionDTO> findAll();
     QuestionDTO findOneById(int id);
-    void save(QuestionDTO questionDTO);
-    void findOneAndDelete(int id);
+    boolean save(QuestionDTO questionDTO);
+    boolean findOneAndDelete(int id);
 }
