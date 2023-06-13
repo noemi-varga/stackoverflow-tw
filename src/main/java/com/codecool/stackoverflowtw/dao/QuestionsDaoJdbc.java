@@ -48,6 +48,31 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
         }
     }
 
+    @Override
+    public boolean save(QuestionDTO questionDTO) {
+        String template = "INSERT INTO question (question_title, question_detail, user_id) VALUES (?, ?, ?)";
+        try (Connection connection = database.getConnection();
+             PreparedStatement statement = connection.prepareStatement(template)) {
+            prepare(questionDTO, statement);
+            statement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public boolean findOneAndDelete(int id) {
+        String template = "DELETE FROM question, answer WHERE question_id = id";
+        try (Connection connection = database.getConnection();
+             PreparedStatement statement = connection.prepareStatement(template)) {
+                statement.executeUpdate();
+                return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private QuestionDTO toEntity(ResultSet resultSet) throws SQLException {
         return new QuestionDTO(
                 resultSet.getInt("question_id"),
@@ -56,23 +81,6 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
                 resultSet.getInt("user_id"),
                 resultSet.getTimestamp("date")
         );
-    }
-
-    @Override
-    public void save(QuestionDTO questionDTO) {
-        String template = "INSERT INTO question (question_title, question_detail, user_id) VALUES (?, ?, ?)";
-        try (Connection connection = database.getConnection();
-             PreparedStatement statement = connection.prepareStatement(template)) {
-            prepare(questionDTO, statement);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void findOneAndDelete(int id) {
-
     }
 
     private void prepare(QuestionDTO questionsDTO, PreparedStatement statement) throws SQLException {
