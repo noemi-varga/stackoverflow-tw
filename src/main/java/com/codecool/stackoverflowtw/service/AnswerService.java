@@ -32,7 +32,7 @@ public class AnswerService {
         return answersDAO.findOneAndDelete(id);
     }
 
-    public boolean addNewQuestion(AnswerDTO answer) {
+    public boolean addNewAnswer(AnswerDTO answer) {
         answersDAO.sayHi();
         return answersDAO.save(answer);
     }

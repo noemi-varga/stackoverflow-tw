@@ -1,5 +1,6 @@
 package com.codecool.stackoverflowtw.dao;
 
+import com.codecool.stackoverflowtw.controller.dto.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.QuestionDTO;
 import com.codecool.stackoverflowtw.dao.database.Database;
 
@@ -37,6 +38,63 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     @Override
+    public List<QuestionDTO> sortByTitle() {
+        String template = "SELECT * FROM question ORDER BY question_title ASC";
+        try (Connection connection = database.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(template)) {
+            List<QuestionDTO> attempts = new ArrayList<>();
+            while (resultSet.next()) {
+                QuestionDTO attempt = toEntity(resultSet);
+                attempts.add(attempt);
+            }
+            return attempts;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<QuestionDTO> sortByDate() {
+        String template = "SELECT * FROM question ORDER BY date ASC";
+        try (Connection connection = database.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(template)) {
+            List<QuestionDTO> attempts = new ArrayList<>();
+            while (resultSet.next()) {
+                QuestionDTO attempt = toEntity(resultSet);
+                attempts.add(attempt);
+            }
+            return attempts;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<QuestionDTO> sortByAnswerCount() {
+        String template = """    
+                SELECT question.*, COUNT(answer.answer_id) AS answer_count
+                FROM question
+                JOIN answer ON answer.question_id = question.question_id
+                GROUP BY question.question_id
+                ORDER BY answer_count DESC
+                """;
+        try (Connection connection = database.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(template)) {
+            List<QuestionDTO> attempts = new ArrayList<>();
+            while (resultSet.next()) {
+                QuestionDTO attempt = toEntity(resultSet);
+                attempts.add(attempt);
+            }
+            return attempts;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public QuestionDTO findOneById(int id) {
         String template = "SELECT * FROM question WHERE question_id = id";
         try (Connection connection = database.getConnection();
@@ -49,7 +107,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     @Override
-    public boolean save(QuestionDTO questionDTO) {
+    public boolean save(NewQuestionDTO questionDTO) {
         String template = "INSERT INTO question (question_title, question_detail, user_id) VALUES (?, ?, ?)";
         try (Connection connection = database.getConnection();
              PreparedStatement statement = connection.prepareStatement(template)) {
@@ -83,7 +141,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
         );
     }
 
-    private void prepare(QuestionDTO questionsDTO, PreparedStatement statement) throws SQLException {
+    private void prepare(NewQuestionDTO questionsDTO, PreparedStatement statement) throws SQLException {
         statement.setString(1, questionsDTO.question_title());
         statement.setString(2, questionsDTO.question_detail());
         statement.setInt(3, questionsDTO.user_id());
