@@ -17,10 +17,21 @@ public class StackoverflowTwApplication {
     public static void main(String[] args) {
 
         //String username = System.getenv("USER_NAME");
+
+        SpringApplication.run(StackoverflowTwApplication.class, args);
+    }
+
+    @Bean
+    public QuestionsDAO questionsDAO(Database database) {
+        return new QuestionsDaoJdbc(database);
+    }
+
+    @Bean
+    public Database database() {
         Database database = new Database(
                 "jdbc:postgresql://localhost:5432/stackoverflow",
                 "postgres",
-                "password");
+                "2911");
         Map<String, String> tables = Map.of(
                 "question", TableStatements.QUESTION,
                 "answer", TableStatements.ANSWER,
@@ -28,12 +39,6 @@ public class StackoverflowTwApplication {
         );
         TableInitializer tableInitializer = new TableInitializer(database, tables);
         tableInitializer.initialize();
-
-        //SpringApplication.run(StackoverflowTwApplication.class, args);
-    }
-
-    @Bean
-    public QuestionsDAO questionsDAO() {
-        return new QuestionsDaoJdbc();
+        return database;
     }
 }
