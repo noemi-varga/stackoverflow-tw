@@ -8,7 +8,7 @@ public interface TableStatements {
             question_id SERIAL PRIMARY KEY,
             question_detail varchar(255) NOT NULL,
             user_id INTEGER,
-            date DEFAULT CURRENT_TIMESTAMP)
+            date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)
             """;
     String ANSWER= """
             DROP TABLE IF EXISTS answer;
@@ -23,12 +23,12 @@ public interface TableStatements {
 
 
     String USER= """
-            DROP TABLE IF EXISTS user;
+            DROP TABLE IF EXISTS "user";
             
-            CREATE TABLE user (
+            CREATE TABLE "user" (
             user_id SERIAL PRIMARY KEY,
-            user_name varchar(255)) NOT NULL,
-            UNIQUE(user_name)
+            user_name varchar(255) NOT NULL,
+            UNIQUE(user_name))
             """;
 
 
