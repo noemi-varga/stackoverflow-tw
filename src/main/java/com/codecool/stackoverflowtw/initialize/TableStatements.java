@@ -6,8 +6,9 @@ public interface TableStatements {
             
             CREATE TABLE question (
             question_id SERIAL PRIMARY KEY,
+            question_title varchar(255) NOT NULL,
             question_detail varchar(255) NOT NULL,
-            user_id INTEGER,
+            user_id INTEGER DEFAULT 0,
             date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)
             """;
     String ANSWER= """
@@ -17,7 +18,7 @@ public interface TableStatements {
             answer_id SERIAL PRIMARY KEY,
             answer_detail varchar(255),
             question_id INTEGER,
-            user_id INTEGER,
+            user_id INTEGER DEFAULT 0,
             date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)
             """;
 
@@ -28,6 +29,7 @@ public interface TableStatements {
             CREATE TABLE "user" (
             user_id SERIAL PRIMARY KEY,
             user_name varchar(255) NOT NULL,
+            password varchar(50) NOT NULL,
             UNIQUE(user_name))
             """;
 
