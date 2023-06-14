@@ -27,8 +27,8 @@ public class AnswersDaoJdbc implements AnswersDAO{
         System.out.println(id);
         String template = """
         SELECT answer.answer_id, answer.answer_detail, answer.question_id, answer.user_id, answer.date
-        FROM answer WHERE answer.question_id = ?
-        """;
+        FROM answer WHERE answer.question_id = 
+        """ + id;
         try (Connection connection = database.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(template)) {
