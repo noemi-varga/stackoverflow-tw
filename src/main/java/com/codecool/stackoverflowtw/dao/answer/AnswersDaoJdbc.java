@@ -2,6 +2,7 @@ package com.codecool.stackoverflowtw.dao.answer;
 
 import com.codecool.stackoverflowtw.controller.dto.answer.AnswerDTO;
 import com.codecool.stackoverflowtw.controller.dto.answer.NewAnswerDTO;
+import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
 import com.codecool.stackoverflowtw.dao.database.Database;
 
 import java.sql.*;
@@ -20,12 +21,13 @@ public class AnswersDaoJdbc implements AnswersDAO{
         this.database = database;
     }
 
+    // TODO fix this idk
     @Override
     public List<AnswerDTO> findAllByQuestionId(int id) {
+        System.out.println(id);
         String template = """
-        SELECT answer.answer_id, answer.question_id, answer.user_id, answer.date
-        FROM answer WHERE question_id = ?
-        ORDER BY date DESC
+        SELECT answer.answer_id, answer.answer_detail, answer.question_id, answer.user_id, answer.date
+        FROM answer WHERE answer.question_id = ?
         """;
         try (Connection connection = database.getConnection();
              Statement statement = connection.createStatement();
@@ -44,13 +46,19 @@ public class AnswersDaoJdbc implements AnswersDAO{
     @Override
     public AnswerDTO findOneById(int id) {
         String template = """
-        SELECT answer.answer_id, answer.question_id, answer.user_id, answer.date
+        SELECT answer.answer_id, answer.answer_detail, answer.question_id, answer.user_id, answer.date
         FROM answer WHERE answer_id = ?
         """;
         try (Connection connection = database.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(template)) {
-            return toEntity(resultSet);
+             PreparedStatement statement = connection.prepareStatement(template)) {
+            statement.setInt(1, id);
+            AnswerDTO answer = null;
+            try(ResultSet resultSet = statement.executeQuery()){
+                while(resultSet.next()) {
+                    answer = toEntity(resultSet);
+                }
+            }
+            return answer;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
