@@ -1,11 +1,13 @@
 package com.codecool.stackoverflowtw.dao.answer;
 
 import com.codecool.stackoverflowtw.controller.dto.answer.AnswerDTO;
+import com.codecool.stackoverflowtw.controller.dto.answer.NewAnswerDTO;
 import com.codecool.stackoverflowtw.dao.database.Database;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class AnswersDaoJdbc implements AnswersDAO{
 
@@ -55,13 +57,17 @@ public class AnswersDaoJdbc implements AnswersDAO{
     }
 
     @Override
-    public boolean save(AnswerDTO answerDTO) {
+    public int save(NewAnswerDTO answerDTO) {
         String template = "INSERT INTO answer (answer_detail, question_id, user_id) VALUES (?, ?, ?)";
         try (Connection connection = database.getConnection();
-             PreparedStatement statement = connection.prepareStatement(template)) {
+             PreparedStatement statement = connection.prepareStatement(template, Statement.RETURN_GENERATED_KEYS)) {
             prepare(answerDTO, statement);
             statement.executeUpdate();
-            return true;
+            try (ResultSet resultSet = statement.getGeneratedKeys()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1);
+                } else throw new NoSuchElementException();
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -89,7 +95,7 @@ public class AnswersDaoJdbc implements AnswersDAO{
         );
     }
 
-    private void prepare(AnswerDTO answerDTO, PreparedStatement statement) throws SQLException {
+    private void prepare(NewAnswerDTO answerDTO, PreparedStatement statement) throws SQLException {
         statement.setString(1, answerDTO.answer_detail());
         statement.setInt(2, answerDTO.question_id());
         statement.setInt(3, answerDTO.user_id());
