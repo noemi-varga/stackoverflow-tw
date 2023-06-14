@@ -1,7 +1,7 @@
 package com.codecool.stackoverflowtw.service;
 
-import com.codecool.stackoverflowtw.controller.dto.AnswerDTO;
-import com.codecool.stackoverflowtw.dao.AnswersDAO;
+import com.codecool.stackoverflowtw.controller.dto.answer.AnswerDTO;
+import com.codecool.stackoverflowtw.dao.answer.AnswersDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
