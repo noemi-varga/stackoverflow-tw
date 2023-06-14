@@ -1,10 +1,12 @@
 package com.codecool.stackoverflowtw;
 
-import com.codecool.stackoverflowtw.dao.AnswersDAO;
-import com.codecool.stackoverflowtw.dao.AnswersDaoJdbc;
-import com.codecool.stackoverflowtw.dao.QuestionsDAO;
-import com.codecool.stackoverflowtw.dao.QuestionsDaoJdbc;
+import com.codecool.stackoverflowtw.dao.answer.AnswersDAO;
+import com.codecool.stackoverflowtw.dao.answer.AnswersDaoJdbc;
+import com.codecool.stackoverflowtw.dao.question.QuestionsDAO;
+import com.codecool.stackoverflowtw.dao.question.QuestionsDaoJdbc;
 import com.codecool.stackoverflowtw.dao.database.Database;
+import com.codecool.stackoverflowtw.dao.user.UsersDAO;
+import com.codecool.stackoverflowtw.dao.user.UsersDaoJdbc;
 import com.codecool.stackoverflowtw.initialize.TableInitializer;
 import com.codecool.stackoverflowtw.initialize.TableStatements;
 import org.springframework.boot.SpringApplication;
@@ -31,6 +33,11 @@ public class StackoverflowTwApplication {
     @Bean
     public AnswersDAO answersDAO(Database database) {
         return new AnswersDaoJdbc(database);
+    }
+
+    @Bean
+    public UsersDAO usersDAO(Database database) {
+        return new UsersDaoJdbc(database);
     }
 
     @Bean
