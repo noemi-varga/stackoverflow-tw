@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class AnswerService {
 
-    private AnswersDAO answersDAO;
+    private final AnswersDAO answersDAO;
 
     @Autowired
     public AnswerService(AnswersDAO answersDAO) {
