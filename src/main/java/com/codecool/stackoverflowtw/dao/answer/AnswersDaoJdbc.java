@@ -22,7 +22,7 @@ public class AnswersDaoJdbc implements AnswersDAO{
     public List<AnswerDTO> findAllByQuestionId(int id) {
         String template = """
         SELECT answer.answer_id, answer.question_id, answer.user_id, answer.date
-        FROM answer WHERE question_id = id
+        FROM answer WHERE question_id = ?
         ORDER BY date DESC
         """;
         try (Connection connection = database.getConnection();
@@ -43,7 +43,7 @@ public class AnswersDaoJdbc implements AnswersDAO{
     public AnswerDTO findOneById(int id) {
         String template = """
         SELECT answer.answer_id, answer.question_id, answer.user_id, answer.date
-        FROM answer WHERE answer_id = id
+        FROM answer WHERE answer_id = ?
         """;
         try (Connection connection = database.getConnection();
              Statement statement = connection.createStatement();
@@ -69,7 +69,7 @@ public class AnswersDaoJdbc implements AnswersDAO{
 
     @Override
     public boolean findOneAndDelete(int id) {
-        String template = "DELETE FROM answer WHERE question_id = id";
+        String template = "DELETE FROM answer WHERE question_id = ?";
         try (Connection connection = database.getConnection();
              PreparedStatement statement = connection.prepareStatement(template)) {
             statement.executeUpdate();
