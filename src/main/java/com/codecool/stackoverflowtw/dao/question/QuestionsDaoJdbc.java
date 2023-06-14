@@ -75,13 +75,13 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
             template = """
                     SELECT question.question_id, question.question_title, question.question_detail, question.user_id, question.date
                     FROM question
-                    ORDER BY question_date ASC
+                    ORDER BY question.date ASC
                     """;
         } else {
             template = """
                     SELECT question.question_id, question.question_title, question.question_detail, question.user_id, question.date
                     FROM question
-                    ORDER BY question_date DESC
+                    ORDER BY question.date DESC
                     """;
         }
         try (Connection connection = database.getConnection();
