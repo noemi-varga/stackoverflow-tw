@@ -136,12 +136,15 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     public QuestionDTO findOneById(int id) {
         String template = "SELECT * FROM question WHERE question_id = ?";
         try (Connection connection = database.getConnection();
-             var statement = connection.prepareStatement(template);
-        ) {
+             PreparedStatement statement = connection.prepareStatement(template)) {
             statement.setInt(1, id);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return toEntity(resultSet);
+            QuestionDTO question = null;
+            try(ResultSet resultSet = statement.executeQuery()){
+                while(resultSet.next()) {
+                    question = toEntity(resultSet);
+                }
             }
+            return question;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -177,8 +180,6 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     private QuestionDTO toEntity(ResultSet resultSet) throws SQLException {
-        if (!resultSet.next())
-            throw new NoSuchElementException();
         return new QuestionDTO(
                 resultSet.getInt("question_id"),
                 resultSet.getString("question_title"),
