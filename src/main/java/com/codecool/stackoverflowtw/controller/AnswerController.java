@@ -19,6 +19,7 @@ public class AnswerController {
         this.answerService = answerService;
     }
 
+    // TODO fix this
     @GetMapping("/all/{id}")
     public List<AnswerDTO> getAllAnswers(@PathVariable int id) {
         return answerService.getAllAnswers(id);
