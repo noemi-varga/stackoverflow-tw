@@ -9,10 +9,10 @@ public interface QuestionsDAO {
     void sayHi();
     List<QuestionDTO> findAll();
     QuestionDTO findOneById(int id);
-    boolean save(NewQuestionDTO questionDTO);
+    int save(NewQuestionDTO questionDTO);
     boolean findOneAndDelete(int id);
-    List<QuestionDTO> sortByTitle();
-    List<QuestionDTO> sortByAnswerCount();
-    List<QuestionDTO> sortByDate();
+    List<QuestionDTO> sortByTitle(String order);
+    List<QuestionDTO> sortByAnswerCount(String order);
+    List<QuestionDTO> sortByDate(String order);
 
 }

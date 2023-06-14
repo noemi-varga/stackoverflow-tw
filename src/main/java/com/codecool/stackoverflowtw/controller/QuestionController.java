@@ -28,23 +28,23 @@ public class QuestionController {
         return questionService.getQuestionById(id);
     }
 
-    @GetMapping("/sort/title")
-    public List<QuestionDTO> sortByTitle() {
-        return questionService.sortByTitle();
+    @GetMapping("/sort/title?sort={order}")
+    public List<QuestionDTO> sortByTitle(@PathVariable String order) {
+        return questionService.sortByTitle(order);
     }
 
-    @GetMapping("/sort/answerCount")
-    public List<QuestionDTO> sortByAnswerCount() {
-        return questionService.sortByAnswerCount();
+    @GetMapping("/sort/answerCount?sort={order}")
+    public List<QuestionDTO> sortByAnswerCount(@PathVariable String order) {
+        return questionService.sortByAnswerCount(order);
     }
 
-    @GetMapping("/sort/date")
-    public List<QuestionDTO> sortByDate() {
-        return questionService.sortByDate();
+    @GetMapping("/sort/date?sort={order}")
+    public List<QuestionDTO> sortByDate(@PathVariable String order) {
+        return questionService.sortByDate(order);
     }
 
     @PostMapping("/")
-    public boolean addNewQuestion(@RequestBody NewQuestionDTO question) {
+    public QuestionDTO addNewQuestion(@RequestBody NewQuestionDTO question) {
         //TODO return posted record!
         return questionService.addNewQuestion(question);
     }

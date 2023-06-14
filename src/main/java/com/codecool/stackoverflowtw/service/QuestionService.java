@@ -31,19 +31,20 @@ public class QuestionService {
         return questionsDAO.findOneAndDelete(id);
     }
 
-    public boolean addNewQuestion(NewQuestionDTO question) {
-        return questionsDAO.save(question);
+    public QuestionDTO addNewQuestion(NewQuestionDTO question) {
+        int id = questionsDAO.save(question);
+        return getQuestionById(id);
     }
 
-    public List<QuestionDTO> sortByTitle() {
-        return questionsDAO.sortByTitle();
+    public List<QuestionDTO> sortByTitle(String order) {
+        return questionsDAO.sortByTitle(order);
     }
 
-    public List<QuestionDTO> sortByAnswerCount() {
-        return questionsDAO.sortByAnswerCount();
+    public List<QuestionDTO> sortByAnswerCount(String order) {
+        return questionsDAO.sortByAnswerCount(order);
     }
 
-    public List<QuestionDTO> sortByDate() {
-        return questionsDAO.sortByDate();
+    public List<QuestionDTO> sortByDate(String order) {
+        return questionsDAO.sortByDate(order);
     }
 }
