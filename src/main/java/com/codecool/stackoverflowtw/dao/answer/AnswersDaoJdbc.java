@@ -1,6 +1,6 @@
-package com.codecool.stackoverflowtw.dao;
+package com.codecool.stackoverflowtw.dao.answer;
 
-import com.codecool.stackoverflowtw.controller.dto.AnswerDTO;
+import com.codecool.stackoverflowtw.controller.dto.answer.AnswerDTO;
 import com.codecool.stackoverflowtw.dao.database.Database;
 
 import java.sql.*;

@@ -1,4 +1,4 @@
-package com.codecool.stackoverflowtw.controller.dto;
+package com.codecool.stackoverflowtw.controller.dto.question;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
