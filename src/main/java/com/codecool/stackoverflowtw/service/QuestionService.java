@@ -2,6 +2,7 @@ package com.codecool.stackoverflowtw.service;
 
 import com.codecool.stackoverflowtw.dao.question.QuestionsDAO;
 import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
+import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,22 +19,31 @@ public class QuestionService {
     }
 
     public List<QuestionDTO> getAllQuestions() {
-        questionsDAO.sayHi();
         return questionsDAO.findAll();
     }
 
     public QuestionDTO getQuestionById(int id) {
-        questionsDAO.sayHi();
         return questionsDAO.findOneById(id);
     }
 
     public boolean deleteQuestionById(int id) {
-        questionsDAO.sayHi();
         return questionsDAO.findOneAndDelete(id);
     }
 
-    public boolean addNewQuestion(QuestionDTO question) {
-        questionsDAO.sayHi();
-        return questionsDAO.save(question);
+    public QuestionDTO addNewQuestion(NewQuestionDTO question) {
+        int id = questionsDAO.save(question);
+        return getQuestionById(id);
+    }
+
+    public List<QuestionDTO> sortByTitle(String order) {
+        return questionsDAO.sortByTitle(order);
+    }
+
+    public List<QuestionDTO> sortByAnswerCount(String order) {
+        return questionsDAO.sortByAnswerCount(order);
+    }
+
+    public List<QuestionDTO> sortByDate(String order) {
+        return questionsDAO.sortByDate(order);
     }
 }

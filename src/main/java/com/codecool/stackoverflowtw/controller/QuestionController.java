@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("questions")
 public class QuestionController {
@@ -25,16 +26,32 @@ public class QuestionController {
 
     @GetMapping("/{id}")
     public QuestionDTO getQuestionById(@PathVariable int id) {
-        return null;
+        return questionService.getQuestionById(id);
+    }
+
+    @GetMapping("/sort/title?sort={order}")
+    public List<QuestionDTO> sortByTitle(@PathVariable String order) {
+        return questionService.sortByTitle(order);
+    }
+
+    @GetMapping("/sort/answerCount?sort={order}")
+    public List<QuestionDTO> sortByAnswerCount(@PathVariable String order) {
+        return questionService.sortByAnswerCount(order);
+    }
+
+    @GetMapping("/sort/date?sort={order}")
+    public List<QuestionDTO> sortByDate(@PathVariable String order) {
+        return questionService.sortByDate(order);
     }
 
     @PostMapping("/")
-    public int addNewQuestion(@RequestBody NewQuestionDTO question) {
-        return 0;
+    public QuestionDTO addNewQuestion(@RequestBody NewQuestionDTO question) {
+        //TODO return posted record!
+        return questionService.addNewQuestion(question);
     }
 
     @DeleteMapping("/{id}")
     public boolean deleteQuestionById(@PathVariable int id) {
-        return false;
+        return questionService.deleteQuestionById(id);
     }
 }
