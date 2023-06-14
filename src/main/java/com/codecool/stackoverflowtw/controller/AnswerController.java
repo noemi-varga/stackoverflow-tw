@@ -19,9 +19,9 @@ public class AnswerController {
         this.answerService = answerService;
     }
 
-    @GetMapping("/all")
-    public List<AnswerDTO> getAllAnswers() {
-        return List.of();
+    @GetMapping("/all/{id}")
+    public List<AnswerDTO> getAllAnswers(@PathVariable int id) {
+        return answerService.getAllAnswers(id);
     }
 
     @GetMapping("/{id}")
