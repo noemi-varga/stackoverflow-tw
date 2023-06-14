@@ -1,0 +1,322 @@
+GET http://localhost:8080/questions/sort/answer?sort=desc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T153124.200.json
+
+###
+
+GET http://localhost:8080/questions/sort/answer?sort=asc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T153106.200.json
+
+###
+
+GET http://localhost:8080/questions/sort/answer?sort=desc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T153053.200.json
+
+###
+
+GET http://localhost:8080/questions/sort/answer?sort=asc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T152957.200.json
+
+###
+
+GET http://localhost:8080/questions/sort/answer?sort=asc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T152601.200.json
+
+###
+
+GET http://localhost:8080/questions/sort/answer?sort=asc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T151814.404.json
+
+###
+
+GET http://localhost:8080/questions/sort/answer?sort=desc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T151726.404.json
+
+###
+
+GET http://localhost:8080/questions/sort/answercount?sort=desc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T151613.404.json
+
+###
+
+GET http://localhost:8080/questions/sort/title?sort=asc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T150714.200.json
+
+###
+
+GET http://localhost:8080/questions/sort/title?sort=asc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T150123.404.json
+
+###
+
+GET http://localhost:8080/questions/all
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T150114.200.json
+
+###
+
+GET http://localhost:8080/questions/sort/title?sort=asc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T150050.404.json
+
+###
+
+GET http://localhost:8080/questions/sort/title?sort=asc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T143906.404.json
+
+###
+
+GET http://localhost:8080/questions/sort/title?sort=asc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T143720.404.json
+
+###
+
+GET http://localhost:8080/questions/sort/title?sort=asc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T142538.404.json
+
+###
+
+GET http://localhost:8080/questions/sort/title?sort={asc}
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T142455.404.json
+
+###
+
+GET http://localhost:8080/questions//sort/title?sort={asc}
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T142445.404.json
+
+###
+
+GET http://localhost:8080/questions/4
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T142406.200.json
+
+###
+
+GET http://localhost:8080/questions/all
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T142213.200.json
+
+###
+
+GET http://localhost:8080/questions/all
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T135940.200.json
+
+###
+
+GET http://localhost:8080/questions/all
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T134259.200.json
+
+###
+
+GET http://localhost:8080/questions/all
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T133900.200.json
+
+###
+
+GET http://localhost:8080/answers/all
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T132825.200.json
+
+###
+
+GET http://localhost:8080/answers/all
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T132812.200.json
+
+###
+
+GET http://localhost:8080/questions/all
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T132101.200.json
+
+###
+
+GET http://localhost:8080/questions/all
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T131941.200.json
+
+###
+
+GET http://localhost:8080/questions/all
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-14T131442.200.json
+
+###
+
+POST http://localhost:8080/questions/
+Content-Type: application/json
+Content-Length: 70
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "question_title" : "test1",
+  "question_detail" : "hello detail"
+}
+
+<> 2023-06-14T114046.200.json
+
+###
+
+POST http://localhost:8080/questions/
+Content-Type: application/json
+Content-Length: 70
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "question_title" : "test1",
+  "question_detail" : "hello detail"
+}
+
+<> 2023-06-14T113811.500.json
+
+###
+
+POST http://localhost:8080/questions/
+Content-Type: application/json
+Content-Length: 70
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "question_title" : "test1",
+  "question_detail" : "hello detail"
+}
+
+<> 2023-06-14T113640.500.json
+
+###
+
+POST http://localhost:8080/questions/
+Content-Type: application/json
+Content-Length: 70
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "question_title" : "test1",
+  "question_detail" : "hello detail"
+}
+
+<> 2023-06-14T113209.500.json
+
+###
+
+POST http://localhost:8080/questions/
+Content-Type: application/json
+Content-Length: 13
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "" : ""
+}
+
+<> 2023-06-14T113104.500.json
+
+###
+

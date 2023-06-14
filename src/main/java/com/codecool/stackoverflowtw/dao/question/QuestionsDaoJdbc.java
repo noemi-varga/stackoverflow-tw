@@ -101,21 +101,22 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     @Override
     public List<QuestionDTO> sortByAnswerCount(String order) {
         String template;
-        if (order.equals("asc")) {
+        System.out.println(order);
+        if (order.equalsIgnoreCase("asc")) {
             template = """    
-                    SELECT question.question_id, question.question_title, question.question_detail, question.user_id, question.date, COUNT(answer.answer_id) AS answer_count
+                    SELECT question.question_id, question.question_title, question.question_detail, question.user_id, question.date
                     FROM question
                     JOIN answer ON answer.question_id = question.question_id
                     GROUP BY question.question_id
-                    ORDER BY answer_count ASC
+                    ORDER BY COUNT(answer.answer_id) ASC
                     """;
         } else {
             template = """
-                    SELECT question.question_id, question.question_title, question.question_detail, question.user_id, question.date, COUNT(answer.answer_id) AS answer_count
+                    SELECT question.question_id, question.question_title, question.question_detail, question.user_id, question.date
                     FROM question
                     JOIN answer ON answer.question_id = question.question_id
                     GROUP BY question.question_id
-                    ORDER BY answer_count DESC
+                    ORDER BY COUNT(answer.answer_id) DESC
                     """;
         }
         try (Connection connection = database.getConnection();
@@ -136,12 +137,15 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     public QuestionDTO findOneById(int id) {
         String template = "SELECT * FROM question WHERE question_id = ?";
         try (Connection connection = database.getConnection();
-             var statement = connection.prepareStatement(template);
-        ) {
+             PreparedStatement statement = connection.prepareStatement(template)) {
             statement.setInt(1, id);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return toEntity(resultSet);
+            QuestionDTO question = null;
+            try(ResultSet resultSet = statement.executeQuery()){
+                while(resultSet.next()) {
+                    question = toEntity(resultSet);
+                }
             }
+            return question;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -177,8 +181,6 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     private QuestionDTO toEntity(ResultSet resultSet) throws SQLException {
-        if (!resultSet.next())
-            throw new NoSuchElementException();
         return new QuestionDTO(
                 resultSet.getInt("question_id"),
                 resultSet.getString("question_title"),

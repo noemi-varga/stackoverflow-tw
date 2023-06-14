@@ -3,6 +3,7 @@ package com.codecool.stackoverflowtw.controller;
 import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
 import com.codecool.stackoverflowtw.service.QuestionService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,20 +29,19 @@ public class QuestionController {
     public QuestionDTO getQuestionById(@PathVariable int id) {
         return questionService.getQuestionById(id);
     }
-
-    @GetMapping("/sort/title?sort={order}")
-    public List<QuestionDTO> sortByTitle(@PathVariable String order) {
-        return questionService.sortByTitle(order);
+    @GetMapping("/sort/title")
+    public List<QuestionDTO> sortByTitle(@RequestParam String sort) {
+        return questionService.sortByTitle(sort);
     }
 
-    @GetMapping("/sort/answerCount?sort={order}")
-    public List<QuestionDTO> sortByAnswerCount(@PathVariable String order) {
-        return questionService.sortByAnswerCount(order);
+    @GetMapping("/sort/answer")
+    public List<QuestionDTO> sortByAnswerCount(@RequestParam String sort) {
+        return questionService.sortByAnswerCount(sort);
     }
 
-    @GetMapping("/sort/date?sort={order}")
-    public List<QuestionDTO> sortByDate(@PathVariable String order) {
-        return questionService.sortByDate(order);
+    @GetMapping("/sort/date")
+    public List<QuestionDTO> sortByDate(@RequestParam String sort) {
+        return questionService.sortByDate(sort);
     }
 
     @PostMapping("/")
