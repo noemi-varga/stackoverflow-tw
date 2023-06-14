@@ -20,7 +20,11 @@ public class AnswersDaoJdbc implements AnswersDAO{
 
     @Override
     public List<AnswerDTO> findAllByQuestionId(int id) {
-        String template = "SELECT * FROM answer WHERE question_id = id";
+        String template = """
+        SELECT answer.answer_id, answer.question_id, answer.user_id, answer.date
+        FROM answer WHERE question_id = id
+        ORDER BY date DESC
+        """;
         try (Connection connection = database.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(template)) {
@@ -37,7 +41,10 @@ public class AnswersDaoJdbc implements AnswersDAO{
 
     @Override
     public AnswerDTO findOneById(int id) {
-        String template = "SELECT * FROM answer WHERE answer_id = id";
+        String template = """
+        SELECT answer.answer_id, answer.question_id, answer.user_id, answer.date
+        FROM answer WHERE answer_id = id
+        """;
         try (Connection connection = database.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(template)) {
