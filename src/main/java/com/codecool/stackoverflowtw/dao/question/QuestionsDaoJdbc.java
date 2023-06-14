@@ -106,7 +106,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
             template = """    
                     SELECT question.question_id, question.question_title, question.question_detail, question.user_id, question.date
                     FROM question
-                    JOIN answer ON answer.question_id = question.question_id
+                    LEFT JOIN answer ON answer.question_id = question.question_id
                     GROUP BY question.question_id
                     ORDER BY COUNT(answer.answer_id) ASC
                     """;
@@ -114,7 +114,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
             template = """
                     SELECT question.question_id, question.question_title, question.question_detail, question.user_id, question.date
                     FROM question
-                    JOIN answer ON answer.question_id = question.question_id
+                    LEFT JOIN answer ON answer.question_id = question.question_id
                     GROUP BY question.question_id
                     ORDER BY COUNT(answer.answer_id) DESC
                     """;
