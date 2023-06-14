@@ -29,8 +29,8 @@ public class AnswerController {
     }
 
     @PostMapping("/")
-    public boolean addNewAnswer(@RequestBody NewAnswerDTO answer) {
-        return false;
+    public AnswerDTO addNewAnswer(@RequestBody NewAnswerDTO answer) {
+        return answerService.addNewAnswer(answer);
     }
 
     @DeleteMapping("/{id}")
