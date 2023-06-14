@@ -25,6 +25,10 @@ public class UserService {
         return usersDAO.findOneByUsername(username);
     }
 
+    public UserDTO getUserById(int id) {
+        return usersDAO.findOneById(id);
+    }
+
     public UserDTO addNewUser(NewUserDTO newUserDTO) {
         return usersDAO.findOneById(usersDAO.save(newUserDTO));
     }

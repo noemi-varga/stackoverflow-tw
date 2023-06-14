@@ -170,7 +170,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public boolean findOneAndDelete(int id) {
-        String template = "DELETE FROM question, answer WHERE question_id = ?";
+        String template = "DELETE FROM question WHERE question_id = ?";
         try (Connection connection = database.getConnection();
              PreparedStatement statement = connection.prepareStatement(template)) {
             statement.executeUpdate();

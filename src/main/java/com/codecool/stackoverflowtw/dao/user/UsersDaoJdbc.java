@@ -1,5 +1,6 @@
 package com.codecool.stackoverflowtw.dao.user;
 
+import com.codecool.stackoverflowtw.controller.dto.answer.AnswerDTO;
 import com.codecool.stackoverflowtw.controller.dto.user.NewUserDTO;
 import com.codecool.stackoverflowtw.controller.dto.user.UserDTO;
 import com.codecool.stackoverflowtw.dao.database.Database;
@@ -45,9 +46,15 @@ public class UsersDaoJdbc implements UsersDAO{
             SELECT * FROM "user" WHERE user_name = ?
         """;
         try (Connection connection = database.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(template)) {
-            return toEntity(resultSet);
+             PreparedStatement statement = connection.prepareStatement(template)) {
+            statement.setString(1, username);
+            UserDTO user = null;
+            try(ResultSet resultSet = statement.executeQuery()){
+                while(resultSet.next()) {
+                    user = toEntity(resultSet);
+                }
+            }
+            return user;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -59,9 +66,15 @@ public class UsersDaoJdbc implements UsersDAO{
             SELECT * FROM "user" WHERE user_id = ?
         """;
         try (Connection connection = database.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(template)) {
-            return toEntity(resultSet);
+             PreparedStatement statement = connection.prepareStatement(template)) {
+            statement.setInt(1, id);
+            UserDTO user = null;
+            try(ResultSet resultSet = statement.executeQuery()){
+                while(resultSet.next()) {
+                    user = toEntity(resultSet);
+                }
+            }
+            return user;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
